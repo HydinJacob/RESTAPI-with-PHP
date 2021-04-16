@@ -1,0 +1,133 @@
+CURL commands to perform testing operations:
+
+1. Read users from the table
+
+	$ curl http://127.0.0.1/usermgmt/api/read.php
+
+
+	{"users":[{"id":1,"first_name":"Grace","last_name":"Hopper","username":"grace_hopper","mode":0},
+	{"id":2,"first_name":"Ellen”,“last_name":"Ullman","username":"Ullman_Ellen","mode":0},
+	{"id":3,"first_name":"Bill","last_name":"Gates","username":"Bill_Gates","mode":0},
+	{"id":4,"first_name":"Ada","last_name":"Lovelace","username":"Ada_Lovelace","mode":0},
+	{"id":5,"first_name":"Jeremy ","last_name":"Keith","username":"Jeremy_Keith","mode":0}]}
+
+
+	$ curl -i http://127.0.0.1/usermgmt/api/read.php (with headers)
+
+	
+	HTTP/1.1 200 OK
+	Date: Fri, 16 Apr 2021 11:54:39 GMT
+	Server: Apache/2.4.46 (Win64) PHP/7.3.21
+	X-Powered-By: PHP/7.3.21
+	Access-Control-Allow-Origin: *
+	Content-Length: 440
+	Content-Type: application/json
+
+	{"users":[{"id":1,"first_name":"Grace","last_name":"Hopper","username":"grace_hopper","mode":0},
+	{"id":2,"first_name":"Ellen","last_name":"Ullman","username":"Ullman_Ellen","mode":0},
+	{"id":3,"first_name":"Bill","last_name":"Gates","username":"Bill_Gates","mode":0},
+	{"id":4,"first_name":"Ada","last_name":"Lovelace","username":"Ada_Lovelace","mode":0},
+	{"id":5,"first_name":"Jeremy ","last_name":"Keith","username":"Jeremy_Keith","mode":0}]}
+
+
+
+
+2. Read a single user from table based on their id
+
+
+	$ curl http://127.0.0.1/usermgmt/api/read_user.php?id=3
+
+	{"id":3,"first_name":"Bill","last_name":"Gates","username":"Bill_Gates","mode":0}
+
+    
+3. Create a new user
+
+
+	$ curl -X POST http://localhost/usermgmt/api/create.php --data '{"first_name":"Maria","last_name":"Jacob","username":"supertatoo@2015","darkmode":0}'
+
+	{"message":"New user created"}
+
+
+	After new user created:
+
+	$ curl http://localhost/usermgmt/api/read.php
+
+
+	{"users":[{"id":1,"first_name":"Grace","last_name":"Hopper","username":"grace_hopper","mode":0},
+	{"id":2,"first_name":"Ellen","last_name":"Ullman","username":"Ullman_Ellen","mode":0},
+	{"id":3,"first_name":"Bill","last_name":"Gates","username":"Bill_Gates","mode":0},
+	{"id":4,"first_name":"Ada","last_name":"Lovelace","username":"Ada_Lovelace","mode":0},
+	{"id":5,"first_name":"Jeremy ","last_name":"Keith","username":"Jeremy_Keith","mode":0},
+	{"id":10,"first_name":"Steve","last_name":"Thomas","username":"steve_thomas@1985","mode":0},
+	{"id":11,"first_name":"Maria","last_name":"Jacob","username":"supertatoo@2015","mode":0}]}
+
+
+4. Update user data
+
+	$ curl -X PUT http://localhost/usermgmt/api/update.php --data '{"first_name":"Stewart","last_name":"Thomas","username":"stewart_thomas@1982","darkmode": 0,"id": 10}'
+
+	{"message":"User data updated"}
+
+
+	After user’s data gets updated:
+
+	$ curl http://localhost/usermgmt/api/read.php
+
+	{"users":[{"id":1,"first_name":"Grace","last_name":"Hopper","username":"grace_hopper","mode":0},
+	{"id":2,"first_name":"Ellen","last_name":"Ullman","username":"Ullman_Ellen","mode":0},
+	{"id":3,"first_name":"Bill","last_name":"Gates","username":"Bill_Gates","mode":0},
+	{"id":4,"first_name":"Ada","last_name":"Lovelace","username":"Ada_Lovelace","mode":0},
+	{"id":5,"first_name":"Jeremy","last_name":"Keith","username":"Jeremy_Keith","mode":0},
+	{"id":10,"first_name":"Stewart","last_name":"Thomas","username":"stewart_thomas@1982","mode":0},
+	{"id":11,"first_name":"Maria","last_name":"Jacob","username":"supertatoo@2015","mode":0}]}
+
+
+5. Delete a user based on the id given
+
+	$ curl -X DELETE http://localhost/usermgmt/api/delete.php?id=11
+
+
+	After deleted the user:
+
+	$ curl http://localhost/usermgmt/api/read.php
+
+	{"users":[{"id":1,"first_name":"Grace","last_name":"Hopper","username":"grace_hopper","mode":0},
+	{"id":2,"first_name":"Ellen","last_name":"Ullman","username":"Ullman_Ellen","mode":0},
+	{"id":3,"first_name":"Bill","last_name":"Gates","username":"Bill_Gates","mode":0},
+	{"id":4,"first_name":"Ada","last_name":"Lovelace","username":"Ada_Lovelace","mode":0},
+	{"id":5,"first_name":"Jeremy","last_name":"Keith","username":"Jeremy_Keith","mode":0},
+	{"id":10,"first_name":"Stewart","last_name":"Thomas","username":"stewart_thomas@1982","mode":0}]}
+    
+
+6. Search a user based on the first_name
+
+	$ curl -X GET http://localhost/usermgmt/api/search.php --data '{"first_name":"Grace"}'
+
+	{"id":1,"first_name":"Grace","last_name":"Hopper","username":"grace_hopper","mode":0}
+
+7. Toggle Drakmode 
+
+	$ curl http://localhost/usermgmt/api/toggle.php --data '{"id":5}'
+
+	{"message":"User darkmode toggled"}
+
+	{"id":5,"first_name":"Jeremy","last_name":"Keith","username":"Jeremy_Keith","mode":1}
+
+	$ curl http://localhost/usermgmt/api/toggle.php --data '{"id":5}'
+
+	{"message":"User darkmode toggled"}
+
+	{"id":5,"first_name":"Jeremy","last_name":"Keith","username":"Jeremy_Keith","mode":0}
+
+
+
+
+
+
+Note:
+
+Indication on the time taken to finish this task:  2days (average 12 hrs)
+
+Resources used for this task completion: Internet, GitHub, YouTube.
+
+
