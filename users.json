@@ -1,0 +1,13 @@
+[
+{"type":"header","version":"5.0.2","comment":"Export to JSON plugin for PHPMyAdmin"},
+{"type":"database","name":"usermgmt"},
+{"type":"table","name":"users","database":"usermgmt","data":
+[
+{"id":"1","first_name":"Grace","last_name":"Hopper","username":"grace_hopper","created_at":"2021-04-13 16:30:19","darkmode":"0"},
+{"id":"2","first_name":"Ellen ","last_name":"Ullman","username":"Ullman_Ellen","created_at":"2021-04-14 16:32:34","darkmode":"0"},
+{"id":"3","first_name":"Bill","last_name":"Gates","username":"Bill_Gates","created_at":"2021-04-13 16:32:34","darkmode":"0"},
+{"id":"4","first_name":"Ada ","last_name":"Lovelace","username":"Ada_Lovelace","created_at":"2021-04-14 16:36:28","darkmode":"0"},
+{"id":"5","first_name":"Jeremy ","last_name":"Keith","username":"Jeremy_Keith","created_at":"2021-04-14 16:37:23","darkmode":"0"}
+]
+}
+]
